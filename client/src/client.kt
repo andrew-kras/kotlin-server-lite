@@ -1,6 +1,4 @@
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.io.PrintWriter
+import java.io.DataOutputStream
 import java.net.Socket
 
 fun main() {
@@ -9,10 +7,11 @@ fun main() {
 
 fun client() {
     val client = Socket("localhost", 4444)
-    val output = PrintWriter(client.getOutputStream(), true)
-    val input = BufferedReader(InputStreamReader(client.inputStream))
+    val output = DataOutputStream(client.getOutputStream())
+    val input = client.getInputStream()
+    val byteUno = 1
+    val byteDos = -1
 
-    output.println("Star")
-    println("[${input.readLine()}]")
+    output.writeInt(33620229)
     client.close()
 }
